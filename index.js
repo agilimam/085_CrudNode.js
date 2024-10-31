@@ -6,13 +6,19 @@ import MovieRoute from "./Routes/Movie.js";
 const app = express();
 const PORT = 8000;
 
+
 app.use(bodyParser.json());
 
-app.use("/Movie",MovieRoute)
+app.use(express.json());
+
+app.set('view engine', 'ejs');
+
+app.use("/Movie", MovieRoute)
+
 app.use("/Mobil", MobilRoute)
+
 app.get("/", (req, res) => {
-    console.log(['GET ROUTE']);
-    res.send("Selamat Pagiiii");
+    res.render('index');
 });
 
 
