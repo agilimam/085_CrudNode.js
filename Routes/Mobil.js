@@ -21,9 +21,6 @@ const mobil = [
     }
 ];
 
-// router.get("/", (req, res) => {
-//     res.send(mobil);
-// });
 
 router.get('/', (req, res) => {
     res.json(mobil);
@@ -34,9 +31,6 @@ router.post('/', (req, res) => {
     const newMobil = {
         id: mobil.length + 1,
         merk: req.body.merk,
-        model: req.body.model,
-        warna: req.body.warna,
-        tahun: req.body.tahun,
         completed: false
     };
     mobil.push(newMobil);
@@ -55,15 +49,15 @@ router.delete('/:id', (req, res) => {
 // PUT METHOD(UPDATE DATA)
 
 router.put('/:id', (req, res) => {
-    const mobil = mobil.find(t => t.id === parseInt(req.params.id));
-    if (!mobil) return res.status(404).json({ message: 'Tugas tidak Ditemukan' });
-    mobil.merk = req.body.merk || mobil.merk;
+    const mobil = mobil.findIndex(t => t.id === parseInt(req.params.id));
+    if (!mobil) return res.status(404).json({ message: 'Tugas tidak ditemukan' });
+    todo.task = req.body.task || todo.task;
 
     res.status(200).json({
-        message: `Mobil dengan ID${mobil.id}telah Diperbarui`,
-        updatedmobil: mobil
-    });
-});
+        message: `Tugas dengan ID ${mobil.id} telah diperbarui`,
+        updatedMobil: mobil
+    })
+})
 
 
 export default router
